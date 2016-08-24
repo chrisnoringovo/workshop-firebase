@@ -19,7 +19,7 @@ export class AppComponent {
   constructor(
     public af: AngularFire
   ) {
-    //var data = af.database.object('/user');
+  
     this.test = af.database.object('/user');
     //this.test.set( { name : 'pelle' } );
 
@@ -34,6 +34,14 @@ export class AppComponent {
       error => console.trace(error)
     );
  
+  }
+
+  create(key, value){
+    this.af.database.object(`/${key}`).set(value); // replace the whole object
+  }
+
+  update(key,value){
+    this.af.database.object(`/${key}`).update(value); // { address : 'London' }
   }
 
   login(from: string) {
