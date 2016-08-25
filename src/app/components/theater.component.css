@@ -1,10 +1,16 @@
 
+.test-seat {
+  float: left;
+  margin-right: 5px;
+}
+
 .movies {
     -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.58);
     -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.58);
     box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.58);
     margin-top: 110%;
     transition: margin-top 1000ms;
+    min-height: 1400px;
 
 }
 
@@ -28,6 +34,8 @@
   height: 60px;
   width: 60px;
   float: left; /* FF3.6-15 */
+  margin: 2%;
+  border-radius: 25%;
   background: -moz-linear-gradient(top, rgba(230,240,163,1) 0%, rgba(210,230,56,1) 50%, rgba(195,216,37,1) 51%, rgba(219,240,67,1) 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ 
@@ -41,9 +49,10 @@ background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1)
 }
 
 .movies .row .column .seat {
-  position: relative;
-  left: 11px;
-  top: 18px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    line-height: 60px;
 }
 
 .movies .row .column.booked{

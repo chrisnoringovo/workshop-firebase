@@ -5,26 +5,40 @@ import { AngularFire, AuthProviders } from 'angularfire2';
   moduleId: module.id,
   selector: 'moviegoer',
   template: `
-    <h3>Update information</h3>
-    <input type="text" #newname placeholder="Name" />
-    <input type="text" #age placeholder="Size" />
-    <button (click)="save(newname.value, age.value)">Update your information</button>
+    <div class="moviegoer">
+      <h3>Update information</h3>
+      <div class="moviegoer-input">
+        <input type="text" #newname placeholder="Name" />
+        <input type="text" #age placeholder="Age" />
+        <button (click)="save(newname.value, age.value)">Update your information</button>
+      </div> 
+      
+      <h3>Selected movie</h3>
+      <p class="movie-detail">
+      Title : {{ (movie | async )?.name }}
+      </p>
+      <p class="movie-detail-length">
+      Movie length: {{ (movie | async )?.length }} min.
+      </p>
 
-    <h3>Movie goer</h3>
-    <p>
-    {{ (moviegoer | async)?.name }}
-    {{ (moviegoer | async)?.age }}
+      <h3>Customer</h3>
+      <p class="moviegoer-info">
+      {{ (moviegoer | async)?.name }}
+      {{ (moviegoer | async)?.age }}
 
-    </p>
+      </p>
+    </div>
   `,
-  styleUrls: ['theater.component.css']
+  styleUrls: ['moviegoer.component.css']
 })
 export class MovieGoer {
     moviegoer;
+    movie;
 
-    constructor( public af:AngularFire ) {
+  constructor( public af:AngularFire ) {
       this.moviegoer = af.database.object('/user');
-    }
+      this.initMovie();
+  }
 
   save(name,age) {
     this.create('user', {
@@ -43,5 +57,19 @@ export class MovieGoer {
 
   remove(key){
     this.af.database.object(`/${key}`).remove();
+  }
+
+  get( key ) {
+    return this.af.database.object(`/${key}`);
+  }
+
+  private initMovie(){
+    this.remove('selected-movie');
+    this.create('selected-movie', {
+      name : 'Jason Bourne',
+      length : 146
+    });
+    this.movie = this.get( 'selected-movie' );
+
   }
 }

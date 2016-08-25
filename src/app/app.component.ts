@@ -14,34 +14,24 @@ export class AppComponent {
   authColor = 'warn';
   user = {};
   test;
+  list:any;
 
 
   constructor(
     public af: AngularFire
   ) {
   
-    this.test = af.database.object('/user');
-    //this.test.set( { name : 'pelle' } );
+    // retrieving object
+    
 
-    //data.subscribe( data => {
-    //  console.log( data );
-    //}, err => {
-    //  console.log(err);
-    //})
+    // initialize list of seats
+    
 
     this.af.auth.subscribe(
       user => this._changeState(user),
       error => console.trace(error)
     );
  
-  }
-
-  create(key, value){
-    this.af.database.object(`/${key}`).set(value); // replace the whole object
-  }
-
-  update(key,value){
-    this.af.database.object(`/${key}`).update(value); // { address : 'London' }
   }
 
   login(from: string) {

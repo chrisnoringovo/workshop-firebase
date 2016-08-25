@@ -1,4 +1,8 @@
 # Angular2 Firebase Workshop
+## Read this link on firebase
+FirebaseWorkshop.md in this repo will explain how to get started with firebase and also the tasks to carry out.
+
+https://github.com/angular/angularfire2/blob/master/docs/2-retrieving-data-as-objects.md
 ## Firebase
 
 ## App Url

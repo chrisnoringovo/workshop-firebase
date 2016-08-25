@@ -17,6 +17,7 @@ export let MD_MODULES: any = [
 // APP
 import { AppComponent }  from './app.component';
 import { Theater } from './components/theater.component';
+import { MovieGoer } from './components/moviegoer.component';
 
 /*
 var waseem = {
@@ -47,7 +48,8 @@ var config = {
   ],
   declarations: [
     AppComponent,
-    Theater
+    Theater,
+    MovieGoer
 
   ],
   bootstrap: [ AppComponent ]

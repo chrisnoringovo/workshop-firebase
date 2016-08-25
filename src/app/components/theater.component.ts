@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
+import { AngularFire, AuthProviders } from 'angularfire2';
 
 @Component({
   moduleId: module.id,
   selector: 'theater',
   template: `
-    <h3>Movie theater</h3>
+    <h2>Movie theater</h2>
+    <h3>Listing the seats</h3>
+
+    <li class="test-seat" *ngFor="let item of list | async">
+        {{ item.seat }}
+    </li>
+    <div style="clear:both"></div>
+
     <div class="movies" [ngClass]="{ animate: animate }">
         <div *ngFor="let row of rows" class="row" [ngClass]="{ animate : row.animate }">
             <div [title]="column.description" (click)="book(column)" [ngClass]="{ booked: column.booked, reserved : column.reserved }" *ngFor="let column of row.columns" class="column">
@@ -20,8 +28,9 @@ export class Theater{
     rows:Array<Row>;
     selectedSeat:Column;
     animate:boolean;
+    list;
 
-    constructor(){
+    constructor(public af:AngularFire){
         this.rows = new Array<Row>();
 
         setTimeout(() => {
@@ -30,6 +39,16 @@ export class Theater{
 
         for(var i=0; i< 10; i++) {
             this.rows.push( new Row(i + 1) );
+        }
+
+        this.initSeats();
+    }
+
+    private initSeats(){
+        this.list = this.af.database.list('/seats');
+        this.list.remove();
+        for(var i=0; i< 10; i++) {
+        this.list.push({ seat: i + 1 });
         }
     }
 
