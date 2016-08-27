@@ -9,10 +9,9 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-  '@angular2-material': 'vendor/@angular2-material',
-
   'firebase': 'vendor/firebase/firebase.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  '@angular2-material': 'vendor/@angular2-material'
 };
 
 /** User packages configuration. */
@@ -26,9 +25,13 @@ const packages: any = {
 // put the names of any of your Material components here
 const materialPkgs:string[] = [
   'core',
-  'card',
   'button',
+  'icon',
+  'input',
+  'menu',
+  'tabs',
   'toolbar',
+  'tooltip'
 ];
 
 materialPkgs.forEach((pkg) => {

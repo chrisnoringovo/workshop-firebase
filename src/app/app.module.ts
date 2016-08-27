@@ -3,21 +3,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule, AuthMethods } from 'angularfire2';
 
-// MATERIAL DESIGN MODULES
-import { MdToolbarModule } from '@angular2-material/toolbar';
-import { MdButtonModule } from '@angular2-material/button';
-import { MdCardModule } from '@angular2-material/card';
-
-export let MD_MODULES: any = [
-  MdToolbarModule,
-  MdButtonModule,
-  MdCardModule
-];
-
 // APP
 import { AppComponent }  from './app.component';
 import { Theater } from './components/theater.component';
 import { MovieGoer } from './components/moviegoer.component';
+
+import { MdButtonModule } from '@angular2-material/button';
+import { MdIconModule } from '@angular2-material/icon';
+import { MdInputModule } from '@angular2-material/input';
+import { MdMenuModule } from '@angular2-material/menu';
+import { MdTabsModule } from '@angular2-material/tabs';
+import { MdToolbarModule } from '@angular2-material/toolbar';
+import { MdTooltipModule } from '@angular2-material/tooltip';
 
 /*
 var waseem = {
@@ -25,7 +22,7 @@ var waseem = {
         authDomain: "angular2-auth.firebaseapp.com",
         databaseURL: "https://angular2-auth.firebaseio.com",
         storageBucket: "angular2-auth.appspot.com"
-}*/ 
+}*/
 
 var config = {
   apiKey: "AIzaSyAD44gPRzYXU3-NI0jmUpk78MQAj-P6zwM",
@@ -44,7 +41,13 @@ var config = {
       }
     ),
     BrowserModule,
-    ...MD_MODULES
+    MdButtonModule,
+    MdIconModule,
+    MdInputModule,
+    MdMenuModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule
   ],
   declarations: [
     AppComponent,
