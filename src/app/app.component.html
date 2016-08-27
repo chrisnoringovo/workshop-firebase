@@ -1,6 +1,4 @@
-<md-toolbar [color]="authColor">
-  <span>Angular2 Auth with AngularFire2</span>
-</md-toolbar>
+<h1>Angular2 Auth with AngularFire2</h1>
 
 <moviegoer></moviegoer>
 <theater></theater>
@@ -9,42 +7,42 @@
 
   <h3 *ngSwitchCase="false">Choose your Federated Identity Provider</h3>
 
-  <md-card *ngSwitchCase="false">
+  <div *ngSwitchCase="false">
 
-    <button md-raised-button (click)="login('google')">
+    <button (click)="login('google')">
       <img width="30" src="google-logo.png" />Use My Google Account
     </button>
 
-    <button md-raised-button (click)="login('facebook')">
+    <button (click)="login('facebook')">
       <img width="30" src="facebook-logo.png" />Use My Facebook Account
     </button>
 
-    <button md-raised-button (click)="login('twitter')">
+    <button (click)="login('twitter')">
       <img width="30" src="twitter-logo.png" />Use My Twitter Account
     </button>
 
-    <button md-raised-button (click)="login('github')">
+    <button (click)="login('github')">
       <img width="30" src="github-logo.png" />Use My Github Account
     </button>
 
-  </md-card>
+  </div>
 
-  <md-card *ngSwitchCase="true">
-     <md-card-header>
-        <img md-card-avatar [src]="user.avatar || 'avatar.png'">
-        <md-card-title>{{ user.name }}</md-card-title>
-        <md-card-subtitle>{{ user.email || '(no email)' }}</md-card-subtitle>
-     </md-card-header>
-     <img md-card-image src="md-banner.jpg">
-     <md-card-content>
+  <div *ngSwitchCase="true">
+     <div>
+        <img [src]="user.avatar || 'avatar.png'">
+        <h1>{{ user.name }}</h1>
+        <h2>{{ user.email || '(no email)' }}</h2>
+     </div>
+     <img src="md-banner.jpg">
+     <div>
         <p>You are logged in using <strong>{{ user.provider }}</strong></p>
-     </md-card-content>
-     <md-card-action>
-       <button md-raised-button (click)="logout()">
+     </div>
+     <div>
+       <button (click)="logout()">
          Logout
        </button>
-     </md-card-action>
-  </md-card>
+     </div>
+  </div>
 
 
 </section>

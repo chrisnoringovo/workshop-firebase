@@ -3,17 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule, AuthMethods } from 'angularfire2';
 
-// MATERIAL DESIGN MODULES
-import { MdToolbarModule } from '@angular2-material/toolbar';
-import { MdButtonModule } from '@angular2-material/button';
-import { MdCardModule } from '@angular2-material/card';
-
-export let MD_MODULES: any = [
-  MdToolbarModule,
-  MdButtonModule,
-  MdCardModule
-];
-
 // APP
 import { AppComponent }  from './app.component';
 import { Theater } from './components/theater.component';
@@ -25,7 +14,7 @@ var waseem = {
         authDomain: "angular2-auth.firebaseapp.com",
         databaseURL: "https://angular2-auth.firebaseio.com",
         storageBucket: "angular2-auth.appspot.com"
-}*/ 
+}*/
 
 var config = {
   apiKey: "AIzaSyAD44gPRzYXU3-NI0jmUpk78MQAj-P6zwM",
@@ -43,8 +32,7 @@ var config = {
         method: AuthMethods.Redirect
       }
     ),
-    BrowserModule,
-    ...MD_MODULES
+    BrowserModule
   ],
   declarations: [
     AppComponent,
