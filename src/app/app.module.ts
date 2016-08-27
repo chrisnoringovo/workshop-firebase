@@ -8,6 +8,14 @@ import { AppComponent }  from './app.component';
 import { Theater } from './components/theater.component';
 import { MovieGoer } from './components/moviegoer.component';
 
+import { MdButtonModule } from '@angular2-material/button';
+import { MdIconModule } from '@angular2-material/icon';
+import { MdInputModule } from '@angular2-material/input';
+import { MdMenuModule } from '@angular2-material/menu';
+import { MdTabsModule } from '@angular2-material/tabs';
+import { MdToolbarModule } from '@angular2-material/toolbar';
+import { MdTooltipModule } from '@angular2-material/tooltip';
+
 /*
 var waseem = {
         apiKey: "AIzaSyCk3weREVFpOIN6pL_QVVNFRl3C3keMIRU",
@@ -32,7 +40,14 @@ var config = {
         method: AuthMethods.Redirect
       }
     ),
-    BrowserModule
+    BrowserModule,
+    MdButtonModule,
+    MdIconModule,
+    MdInputModule,
+    MdMenuModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule
   ],
   declarations: [
     AppComponent,

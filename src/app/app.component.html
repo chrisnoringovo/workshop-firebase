@@ -1,7 +1,21 @@
-<h1>Angular2 Auth with AngularFire2</h1>
+<md-toolbar>
+  <span>Angular2 Auth with AngularFire2 and AngularMaterial2</span>
+</md-toolbar>
 
-<moviegoer></moviegoer>
-<theater></theater>
+<md-tab-group>
+  <md-tab>
+    <template md-tab-label>Personal info</template>
+    <template md-tab-content>
+      <moviegoer></moviegoer>
+    </template>
+  </md-tab>
+  <md-tab>
+    <template md-tab-label>Seats selection</template>
+    <template md-tab-content>
+      <theater></theater>
+    </template>
+  </md-tab>
+</md-tab-group>
 
 <section [ngSwitch]="isAuth">
 
