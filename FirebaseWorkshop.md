@@ -12,9 +12,20 @@ npm install
 ng serve
 ```
 
-### Create an account
+# Getting started
+Go to https://firebase.google.com
 
-At the firebase page, Go to settings ( cog wheel ) and select "Add Firebase to your web app". This will give a popup window with all the credentials needed to codewise setup your app.
+Login
+
+Click go to console
+
+Create new project
+
+Press Home
+
+Click 'Add Firebase to your web app'. This will indicate
+the needed config. Go to app.module.ts an change the config variable to
+what the firebase console indicates.
 
 ## Application Development
 
@@ -64,33 +75,109 @@ Absolute address:
 https://fir-workshop-fb35a.firebaseio.com/user
 ```
 
-The data comes back as an observable. So retrieve it like so:
 
-```
-data.subscribe( data => {
-   console.log( data );
-}, err => {
-   console.log(err);
-})
-```
 
 #### Display data in app
 
-This is not how we will do it initially however. To display data we just need to create a reference to our address and then display it when it is fetched
+To display data we just need to create a reference to our address and then display it when it is fetched
 
-TODO  display data in app
+```
+this.moviegoer = af.database.object('/user');
+```
 
-TODO CRUD
+And display in UI
 
-TODO lists
+```
+{{ (moviegoer | async)?.name }}
+{{ (moviegoer | async)?.age }}
+```
+Note the use of the async pipe as well as ?, i.e nullable, because it is null until it arrives and we don't want to crash the template
 
-### Working with authentication
+#### CRUD object
 
-TODO authentication
+**Create** 
+We use the *set* method to achive a create, like so:
+
+```
+var user = af.database.object('/user');
+user.set({ name : 'new name' });
+```
+
+**Update**
+
+```
+var user = af.database.object('/user');
+user.update({ name : 'updated name' });
+```
+
+**Delete**
+
+```
+var user = af.database.object('/user');
+user.remove();
+```
+
+#### CRUD lists
+
+**Load data**
+
+To fetch a list simply to as before but use the keyword *list* instead of *object*
+```
+this.af.database.list('/seats')
+```
+
+2nd version is that you can specify a query like so:
+
+```
+af.database.list('/items', {
+  query: {
+    limitToLast: 10,
+    orderByKey: true
+  }
+})
+```
+
+Regardless of used version the data is displayed like so in the UI
+
+```
+  <li *ngFor="let item of items | async">
+      {{ item.name }}
+  </li>
+```
+
+**Create**
+
+```
+var list = af.database.list('/products');
+list.push( { name : 'tomato' } );
+```
+
+**Update and Remove**
+
+```
+this.items = af.database.list('/items');
+
+Show in UI
+
+<li *ngFor="let item of items | async">
+      <input type="text" #updatetext [value]="item.text" />
+      <button (click)="updateItem(item.$key, updatetext.value)">Update</button>
+      <button (click)="deleteItem(item.$key)">Delete</button>
+    </li>
+
+updateItem(key, newValue){
+  this.items.update(key, { name : newValue });
+}
+
+deleteItem(key){
+  this.items.remove( key );
+}
+
+```
 
 ## Workshop tasks
 
-The idea is to build a movie booking app that many people can use. The movie in question should have a limited number of seats that can be booked. A seat can be reserved, booked or available. A reserverd seat can be unreserved, a booked seat is paid for and cannot be given back. 
+The idea is to build a movie booking app that many people can use. The movie in question should have a limited number of seats that can be booked. A seat can be reserved, booked or available. A reserved seat can be unreserved, a booked seat is paid for and cannot be given back. 
 
 1. Render the theater component with actual data from the firebase database
 

@@ -8,14 +8,7 @@ import { AppComponent }  from './app.component';
 import { Theater } from './components/theater.component';
 import { MovieGoer } from './components/moviegoer.component';
 
-/*
-var waseem = {
-        apiKey: "AIzaSyCk3weREVFpOIN6pL_QVVNFRl3C3keMIRU",
-        authDomain: "angular2-auth.firebaseapp.com",
-        databaseURL: "https://angular2-auth.firebaseio.com",
-        storageBucket: "angular2-auth.appspot.com"
-}*/
-
+// replace me with your config
 var config = {
   apiKey: "AIzaSyAD44gPRzYXU3-NI0jmUpk78MQAj-P6zwM",
   authDomain: "fir-workshop-fb35a.firebaseapp.com",
