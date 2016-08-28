@@ -8,15 +8,13 @@ import { AngularFire, AuthProviders } from 'angularfire2';
     <h2>Movie theater</h2>
     <h3>Listing the seats</h3>
 
-    <li class="test-seat" *ngFor="let item of list | async">
-        {{ item.seat }}
-    </li>
+    <div> Plats {{ ( plats | async )?.name }} {{ ( plats | async )?.country }} </div>
     <div style="clear:both"></div>
 
     <div class="movies" [ngClass]="{ animate: animate }">
-        <div *ngFor="let row of rows" class="row" [ngClass]="{ animate : row.animate }">
-            <div [title]="column.description" (click)="book(column)" [ngClass]="{ booked: column.booked, reserved : column.reserved }" *ngFor="let column of row.columns" class="column">
-            <span class="seat">{{ column.seat }}</span>
+        <div *ngFor="let seat of list | async" class="row" [ngClass]="{ animate : animate }">
+            <div [title]="seat.description" (click)="book(seat)" [ngClass]="{ booked: seat.booked, reserved : seat.reserved }" class="column">
+            <span class="seat">{{ seat.seat }}</span>
             </div>
         </div>
         <div class="selected-seat">Latest selection : {{ selectedSeat?.description }}</div>
@@ -29,6 +27,7 @@ export class Theater{
     selectedSeat:Column;
     animate:boolean;
     list;
+    plats;
 
     constructor(public af:AngularFire){
         this.rows = new Array<Row>();
@@ -37,35 +36,52 @@ export class Theater{
             this.animate = true;
         },100);  
 
-        for(var i=0; i< 10; i++) {
-            this.rows.push( new Row(i + 1) );
-        }
+        //for(var i=0; i< 10; i++) {
+        //    this.rows.push( new Row(i + 1) );
+        //}
+
+        this.plats = af.database.object('/plats');
+        //this.plats.set({name : 'Bristol'});
+        this.plats.update({ country : 'UK' });
 
         this.initSeats();
     }
 
     private initSeats(){
         this.list = this.af.database.list('/seats');
-        this.list.remove();
-        for(var i=0; i< 10; i++) {
-        this.list.push({ seat: i + 1 });
+       // this.list.remove();
+
+
+        for(var i=0; i< 100; i++) {
+            this.list.push({ seat: i + 1, reserved : false, booked : false });
         }
     }
 
-    book(column:Column) {
-        this.selectedSeat = column;
-        console.log('book', column.seat);
-        if(column.booked) {
-            column.booked = false;
-            column.reserved;
-        } else if(column.reserved) {
-            column.booked = true;
-            column.reserved = false;
-        } else if(column.booked) {
-            column.booked = false;
+    book(seat) {
+
+       
+        var db = this.af.database.list('/seats');
+    
+        this.selectedSeat = seat;
+      
+        if(seat.booked) {
+            seat.booked = false;
+            seat.reserved;
+        } else if(seat.reserved) {
+            seat.booked = true;
+            seat.reserved = false;
+        } else if(seat.booked) {
+            seat.booked = false;
         } else {
-            column.reserved = true;
+            seat.reserved = true;
         }
+
+        db.update(seat.$key, {
+            booked : seat.booked,
+            reserved : seat.reserved
+        }).then(() => {
+           // show spinner 
+        }, err => console.log(err) );
         
     }
 }
