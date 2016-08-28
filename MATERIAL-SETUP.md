@@ -11,7 +11,7 @@ This guide will take you through adding Angular Material 2 to your project.
 We'll take the components we need from the [list of published packages here](https://www.npmjs.com/~angular2-material).
 
 ```bash
- npm install --save @angular2-material/{core,button,icon,input,menu,tabs,toolbar,tooltip}
+ npm install --save @angular2-material/{core,button,card,icon,input,menu,tabs,toolbar,tooltip}
 ```
 
 (the core module is required as a peer dependency of other components)
@@ -58,6 +58,7 @@ Next, you need to let SystemJS know how to process the new modules. Specifically
 const materialPkgs:string[] = [
   'core',
   'button',
+  'card',
   'icon',
   'input',
   'menu',
@@ -82,6 +83,7 @@ We are going to import the components in our application module:
   imports: [
     ...
     MdButtonModule,
+    MdCardModule,
     MdIconModule,
     MdInputModule,
     MdMenuModule,

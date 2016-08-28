@@ -4,8 +4,7 @@ import { AngularFire, AuthProviders } from 'angularfire2';
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   isAuth = false;

@@ -1,0 +1,42 @@
+<md-card>
+
+  <img md-card-image src="md-banner.jpg">
+
+  <md-card-title-group>
+    <md-card-title>
+      {{ (movie | async )?.name }}
+    </md-card-title>
+    <md-card-subtitle>
+      {{ (movie | async )?.length }}
+      min.
+    </md-card-subtitle>
+  </md-card-title-group>
+
+</md-card>
+
+<br/>
+
+<md-card>
+
+  <md-card-title-group>
+    <md-card-title md-tooltip="Your name">
+      {{ (moviegoer | async)?.name }}
+    </md-card-title>
+    <md-card-subtitle md-tooltip="Your age">
+      {{ (moviegoer | async)?.age }}
+    </md-card-subtitle>
+  </md-card-title-group>
+
+  <md-card-content>
+    <p>
+      <md-input type="text" #newname placeholder="Name"></md-input>
+      <md-input type="text" #age placeholder="Age">
+        <span md-suffix>y.o.</span>
+      </md-input>
+    </p>
+    <p>
+      <button md-raised-button (click)="save(newname.value, age.value)">Update</button>
+    </p>
+  </md-card-content>
+
+</md-card>

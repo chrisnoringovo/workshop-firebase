@@ -3,13 +3,17 @@ body {
   padding: 0;
 }
 
-
-app-root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  flex-direction: column;
+@media (min-width: 768px) {
+  .container {
+      background-color: #f0f0f0;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+  }
+  .container > * {
+      max-width: 768px;
+      width: 100%;
+  }
 }
 
 .loader {

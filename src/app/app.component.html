@@ -1,62 +1,88 @@
-<md-toolbar>
-  <span>Angular2 Auth with AngularFire2 and AngularMaterial2</span>
+<md-toolbar color="primary">
+
+  <span>My cinema</span>
+
+  <span style="flex: 1 1 auto;"></span>
+
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>account_circle</md-icon>
+  </button>
+
+  <md-menu x-position="before" #menu="mdMenu">
+
+    <div *ngIf="!isAuth">
+
+      <button md-menu-item disabled>
+        Log in using:
+      </button>
+
+      <button (click)="login('google')" md-menu-item>
+        <img width="24" src="google-logo.png"/>&nbsp; Google Account
+      </button>
+
+      <button (click)="login('facebook')" md-menu-item>
+        <img width="24" src="facebook-logo.png"/>&nbsp; Facebook Account
+      </button>
+
+      <button (click)="login('twitter')" md-menu-item>
+        <img width="24" src="twitter-logo.png"/>&nbsp; Twitter Account
+      </button>
+
+      <button (click)="login('github')" md-menu-item>
+        <img width="24" src="github-logo.png"/>&nbsp; GitHub Account
+      </button>
+
+    </div>
+
+    <button *ngIf="isAuth" md-button (click)="logout()">Logout</button>
+
+  </md-menu>
+
 </md-toolbar>
 
 <md-tab-group>
   <md-tab>
-    <template md-tab-label>Personal info</template>
+    <template md-tab-label>Ticket</template>
     <template md-tab-content>
-      <moviegoer></moviegoer>
+
+      <div class="container">
+        <moviegoer></moviegoer>
+      </div>
+
     </template>
   </md-tab>
   <md-tab>
-    <template md-tab-label>Seats selection</template>
+    <template md-tab-label>Seats</template>
     <template md-tab-content>
-      <theater></theater>
+
+      <div class="container">
+        <theater></theater>
+      </div>
+
+    </template>
+  </md-tab>
+  <md-tab *ngIf="isAuth">
+    <template md-tab-label>My account</template>
+    <template md-tab-content>
+
+      <div class="container">
+        <md-card>
+          <md-card-header>
+            <img md-card-avatar [src]="user.avatar || 'avatar.png'">
+            <md-card-title>{{ user.name }}</md-card-title>
+            <md-card-subtitle>{{ user.email || '(no email)' }}</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <p>You are logged in using
+              <strong>{{ user.provider }}</strong>
+            </p>
+          </md-card-content>
+          <md-card-actions>
+            <button md-raised-button (click)="logout()">Logout</button>
+          </md-card-actions>
+        </md-card>
+      </div>
+
     </template>
   </md-tab>
 </md-tab-group>
-
-<section [ngSwitch]="isAuth">
-
-  <h3 *ngSwitchCase="false">Choose your Federated Identity Provider</h3>
-
-  <div *ngSwitchCase="false">
-
-    <button (click)="login('google')">
-      <img width="30" src="google-logo.png" />Use My Google Account
-    </button>
-
-    <button (click)="login('facebook')">
-      <img width="30" src="facebook-logo.png" />Use My Facebook Account
-    </button>
-
-    <button (click)="login('twitter')">
-      <img width="30" src="twitter-logo.png" />Use My Twitter Account
-    </button>
-
-    <button (click)="login('github')">
-      <img width="30" src="github-logo.png" />Use My Github Account
-    </button>
-
-  </div>
-
-  <div *ngSwitchCase="true">
-     <div>
-        <img [src]="user.avatar || 'avatar.png'">
-        <h1>{{ user.name }}</h1>
-        <h2>{{ user.email || '(no email)' }}</h2>
-     </div>
-     <img src="md-banner.jpg">
-     <div>
-        <p>You are logged in using <strong>{{ user.provider }}</strong></p>
-     </div>
-     <div>
-       <button (click)="logout()">
-         Logout
-       </button>
-     </div>
-  </div>
-
-
-</section>

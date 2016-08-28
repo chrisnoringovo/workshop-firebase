@@ -9,6 +9,7 @@ import { Theater } from './components/theater.component';
 import { MovieGoer } from './components/moviegoer.component';
 
 import { MdButtonModule } from '@angular2-material/button';
+import { MdCardModule } from '@angular2-material/card';
 import { MdIconModule } from '@angular2-material/icon';
 import { MdInputModule } from '@angular2-material/input';
 import { MdMenuModule } from '@angular2-material/menu';
@@ -16,20 +17,12 @@ import { MdTabsModule } from '@angular2-material/tabs';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdTooltipModule } from '@angular2-material/tooltip';
 
-/*
-var waseem = {
-        apiKey: "AIzaSyCk3weREVFpOIN6pL_QVVNFRl3C3keMIRU",
-        authDomain: "angular2-auth.firebaseapp.com",
-        databaseURL: "https://angular2-auth.firebaseio.com",
-        storageBucket: "angular2-auth.appspot.com"
-}*/
-
 var config = {
-  apiKey: "AIzaSyAD44gPRzYXU3-NI0jmUpk78MQAj-P6zwM",
-  authDomain: "fir-workshop-fb35a.firebaseapp.com",
-  databaseURL: "https://fir-workshop-fb35a.firebaseio.com",
-  storageBucket: "fir-workshop-fb35a.appspot.com",
-};
+    apiKey: "AIzaSyCE9PCH6nwsfT51O4PAMESQvdduDxzkJCM",
+    authDomain: "london-js.firebaseapp.com",
+    databaseURL: "https://london-js.firebaseio.com",
+    storageBucket: "",
+  };
 
 @NgModule({
   imports: [
@@ -42,6 +35,7 @@ var config = {
     ),
     BrowserModule,
     MdButtonModule,
+    MdCardModule,
     MdIconModule,
     MdInputModule,
     MdMenuModule,

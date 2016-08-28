@@ -5,21 +5,12 @@ import { AngularFire, AuthProviders } from 'angularfire2';
   moduleId: module.id,
   selector: 'theater',
   template: `
-    <h2>Movie theater</h2>
-    <h3>Listing the seats</h3>
-
-    <li class="test-seat" *ngFor="let item of list | async">
-        {{ item.seat }}
-    </li>
-    <div style="clear:both"></div>
-
-    <div class="movies" [ngClass]="{ animate: animate }">
+    <div class="auditorium" [ngClass]="{ animate: animate }">
         <div *ngFor="let row of rows" class="row" [ngClass]="{ animate : row.animate }">
-            <div [title]="column.description" (click)="book(column)" [ngClass]="{ booked: column.booked, reserved : column.reserved }" *ngFor="let column of row.columns" class="column">
-            <span class="seat">{{ column.seat }}</span>
-            </div>
+            <button md-raised-button [ngClass]="{ booked: column.booked, reserved: column.reserved }" [title]="column.description" (click)="book(column)" *ngFor="let column of row.columns" class="seat">
+            {{ column.seat }}
+            </button>
         </div>
-        <div class="selected-seat">Latest selection : {{ selectedSeat?.description }}</div>
     </div>
   `,
   styleUrls: ['theater.component.css']
@@ -35,7 +26,7 @@ export class Theater{
 
         setTimeout(() => {
             this.animate = true;
-        },100);  
+        },100);
 
         for(var i=0; i< 10; i++) {
             this.rows.push( new Row(i + 1) );
@@ -66,7 +57,7 @@ export class Theater{
         } else {
             column.reserved = true;
         }
-        
+
     }
 }
 

@@ -26,6 +26,7 @@ const packages: any = {
 const materialPkgs:string[] = [
   'core',
   'button',
+  'card',
   'icon',
   'input',
   'menu',
