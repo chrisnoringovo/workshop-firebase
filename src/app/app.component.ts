@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
 
-import { Theater } from './components/theater.component';
-
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   isAuth = false;
@@ -20,18 +17,18 @@ export class AppComponent {
   constructor(
     public af: AngularFire
   ) {
-  
+
     // retrieving object
-    
+
 
     // initialize list of seats
-    
+
 
     this.af.auth.subscribe(
       user => this._changeState(user),
       error => console.trace(error)
     );
- 
+
   }
 
   login(from: string) {
@@ -78,5 +75,3 @@ export class AppComponent {
     }
   }
 }
-
-

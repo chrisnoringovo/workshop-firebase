@@ -4,32 +4,7 @@ import { AngularFire, AuthProviders } from 'angularfire2';
 @Component({
   moduleId: module.id,
   selector: 'moviegoer',
-  template: `
-    <div class="moviegoer">
-      <h3>Update information</h3>
-      <div class="moviegoer-input">
-        <input type="text" #newname placeholder="Name" />
-        <input type="text" #age placeholder="Age" />
-        <button (click)="save(newname.value, age.value)">Update your information</button>
-      </div> 
-      
-      <h3>Selected movie</h3>
-      <p class="movie-detail">
-      Title : {{ (movie | async )?.name }}
-      </p>
-      <p class="movie-detail-length">
-      Movie length: {{ (movie | async )?.length }} min.
-      </p>
-
-      <h3>Customer</h3>
-      <p class="moviegoer-info">
-      {{ (moviegoer | async)?.name }}
-      {{ (moviegoer | async)?.age }}
-
-      </p>
-    </div>
-  `,
-  styleUrls: ['moviegoer.component.css']
+  templateUrl: 'moviegoer.component.html'
 })
 export class MovieGoer {
     moviegoer;
